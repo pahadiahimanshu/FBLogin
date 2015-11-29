@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>FBLogin</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+	
+	<servlet>
+      <servlet-name>FBAfterLoginServlet</servlet-name>
+      <servlet-class>FBAfterLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>FBLoginServlet</servlet-name>
+      <servlet-class>FBLoginServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>FBLoginServlet</servlet-name>
+        <url-pattern>/FBLoginServlet</url-pattern>
+    </servlet-mapping>
+
+    
+    <servlet-mapping>
+        <servlet-name>FBAfterLoginServlet</servlet-name>
+        <url-pattern>/FBAfterLoginServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+</web-app>
