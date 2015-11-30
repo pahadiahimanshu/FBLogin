@@ -2,7 +2,10 @@
  * @author =  himanshu pahadia
  */
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -10,6 +13,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +72,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 		
 		String accessToken = getFBAccessToken(fbCode,pw);
 		String appSecret = "c5faa6fab48f6a785f0598ec11b3dddd";
-		
+		String comma = ",";
 //		pw.println("<br>the access token is thisss "+accessToken);
 		
 //		pw.println(userID);
@@ -78,7 +82,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 		{
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken, appSecret);
 			User user = facebookClient.fetchObject("me", User.class);
-			Connection<Post> myFeed = facebookClient.fetchConnection("me/feed", Post.class);
+			Connection<Post> myFeed = facebookClient.fetchConnection("me/feed", Post.class,Parameter.with("fields", "id,name,picture,likes,comments,message,created_time,object_id"));
 //			JsonObject jsonObject = facebookClient.fetchObject("me/feed",JsonObject.class, Parameter.with("summary", true),Parameter.with("limit", 1));
 //	        long count = jsonObject.getJsonObject("summary").getLong("total_count");
 //	        System.out.println(jsonObject);
@@ -87,47 +91,44 @@ public class FBAfterLoginServlet extends HttpServlet {
 			try
 			{
 				pw.println("<br> Hello, <h1>"+user.getName()+"</h1><br>");
+//				System.out.println("this is printed");
+				String filename = "C:\\Users\\Himanshu\\git\\FBLoginRepository\\FBLogin\\userInfo\\";
+				filename += user.getId();
+				filename +=".csv";
+				
+//				System.out.println("FILE IS "+filename);
+				BufferedWriter writer = new BufferedWriter( new FileWriter(filename,true));
+//				System.out.println("made the buffer object");
+				writer.write(user.getId() + comma + userID );
+				writer.newLine();
+//				System.out.println("written first line");
+				System.out.println(user.getId()+comma+userID);
+				// fb id and session id in the first line
+				
 				
 				
 				int i = 1;
 				pw.println("<bold>Your Posts</bold>");
-//				for (List<Post> myFeedConnectionPage : myFeed)
-//				{
-//					System.out.println("Getting list");
-//					for (Post post : myFeedConnectionPage)
-//					{
-//						System.out.println("\n"+i+".\n"+post.getMessage()+"\n"+post.getId()+"\t"+post.getCreatedTime().toString());
-////						System.out.println("\tLIKES="+post.getLikes().getData().size());
-					
-//						i++;
-//						if(i>10)
-//							break;
-//					}
-//					System.out.println("########################");
-//					if(i>10)
-//						break;
-//				}
-//				 while (myFeed.hasNext()) 
-//				 {
-//					 myFeed = facebookClient.fetchConnectionPage(myFeed.getNextPageUrl(),Post.class);
-//					
-//				 }
+			
 				int k = 0;
+//				System.out.println("i am here before for loop");
 				for(List<Post> feed : myFeed)
 				{
-//					pw.println("Finding feed : "+feed.toString());
+//					System.out.println("before second loop");
 					for(Post post : feed)
 					{
-//						pw.println("Post id is " + post.getId().toString());
-//						System.out.println("I am running k="+k);
-						if(k++ > 1)
+//						System.out.println("inside second loop yeah");
+						if(k++ > 10)
 							break;
 						JsonObject jsonObject = null;
 						JsonObject jsonComm = null;
+//						System.out.println("before first try");
 						try
 						{
+//							System.out.println("first try");
 							try
 							{
+//								System.out.println("second try like object");
 								jsonObject = facebookClient.fetchObject(post.getId() + "/likes",JsonObject.class, Parameter.with("summary", true),Parameter.with("limit", 10));
 								
 							}
@@ -137,6 +138,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 							}
 							try
 							{
+//								System.out.println("2nd try comment object");
 								jsonComm = facebookClient.fetchObject(post.getId()+"/comments",JsonObject.class,Parameter.with("summary", true),Parameter.with("limit", 10));
 //								System.out.println(jsonComm);
 							}
@@ -145,31 +147,71 @@ public class FBAfterLoginServlet extends HttpServlet {
 								System.out.println("error finding comments json");
 							}
 							
-							long comment = jsonComm.getJsonObject("summary").getLong("total_count");
-							long count = jsonObject.getJsonObject("summary").getLong("total_count");
-							
+//							System.out.println("making comment and likes ");
+							long comment = 0, likes = 0 ;
+							comment = jsonComm.getJsonObject("summary").getLong("total_count");
+							likes = jsonObject.getJsonObject("summary").getLong("total_count");
+//							System.out.println("made comment and likes objects long");
 							
 //							long id = jsonObject.getJsonObject("data").getLong("id");
 //							System.out.println("iski id a"+id);
-							System.out.println("\n"+k+".\nID == "+post.getId()+"\tMESSAGE == "+post.getMessage()+"\nLIKES == "+count+"\tCOMMENT == "+comment+"\t CREATION == "+post.getCreatedTime());
-							System.out.println("\nLIKERS "+jsonObject.getString("data"));
-							System.out.println("\nCOMMENTERS "+jsonComm.getString("data"));
+//							System.out.println("\n"+k+".\nID == "+post.getId()+"\tMESSAGE == "+post.getMessage()+"\nLIKES == "+count+"\tCOMMENT == "+comment+"\t CREATION == "+post.getCreatedTime());
+//							System.out.println("\nLIKERS "+jsonObject.getString("data"));
+//							System.out.println("\nCOMMENTERS "+jsonComm.getString("data"));
+							String type = "status";
+							if(post.getObjectId() == null)
+								type = "status";
+							else
+								type = "photo";
+							String li =jsonObject.getString("data");
+							String listLikers = "";
+							for(int index = 0; index < li.length(); index++)
+							{
+								if(li.charAt(index) != '[' && li.charAt(index) != ']' && li.charAt(index) != '{' && li.charAt(index) != '}' && li.charAt(index) != '\"'&& li.charAt(index) != ':'&& li.charAt(index) != 'i'&& li.charAt(index) != 'd')
+								{
+									listLikers += li.charAt(index);
+								}	
+							}
+							listLikers = listLikers.replace(',', '+');
+							String status = post.getMessage();
+							if(status != null)
+							{
+								status = status.replace(',', ' ');
+							}
+							if(listLikers.equals(""))
+								listLikers = null;
+							String date ="";
+							int year = post.getCreatedTime().getYear() + 1900;
+							date += year+"-"+post.getCreatedTime().getMonth()+"-"+post.getCreatedTime().getDate()+" "+post.getCreatedTime().getHours()+":"+post.getCreatedTime().getMinutes()+":"+post.getCreatedTime().getSeconds();
+//							System.out.println(date);
+//							System.out.println(post.getLikes());
+//							System.out.println(listLikers);
+//							System.out.println(post.getPicture() +"\n###"+post.getObjectId());
+//							System.out.println("im here");
+//							System.out.println("\t\tMAIN"+post.getObjectId()+comma+post.getPicture()+comma+post.getAttachments()+comma);
+//							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+listLikers);
+							writer.write(type+comma+status+comma+likes+comma+post.getCreatedTime()+comma+comment+comma+listLikers);
+							writer.newLine();
 							
 						}
 						catch(Exception e)
 						{
+//							System.out.print(".");
 //							System.out.println("Error occurred");
 							k--;
 						}
 					}
-					if(k > 1)
+					if(k > 10)
 						break;
 				}
+				writer.close();
+				
 			}
 			catch(Exception e)
 			{
-			
+				System.out.println("exception occurred at begin first try");
 			}
+			
 		}
 		else
 		{
