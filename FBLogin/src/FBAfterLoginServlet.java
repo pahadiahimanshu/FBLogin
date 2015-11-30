@@ -124,6 +124,8 @@ public class FBAfterLoginServlet extends HttpServlet {
 //					 myFeed = facebookClient.fetchConnectionPage(myFeed.getNextPageUrl(),Post.class);
 //					
 //				 }
+				long comment = null;
+				long count = null;
 				int k = 0;
 				for(List<Post> feed : myFeed)
 				{
@@ -132,16 +134,15 @@ public class FBAfterLoginServlet extends HttpServlet {
 					{
 //						pw.println("Post id is " + post.getId().toString());
 //						System.out.println("I am running k="+k);
-						if(k++ > 1)
+						if(k++ > 10)
 							break;
 						JsonObject jsonObject = null;
 						JsonObject jsonComm = null;
-						try
-						{
+						
 							try
 							{
 								jsonObject = facebookClient.fetchObject(post.getId() + "/likes",JsonObject.class, Parameter.with("summary", true),Parameter.with("limit", 10));
-								
+								count = jsonObject.getJsonObject("summary").getLong("total_count");
 							}
 							catch(Exception e)
 							{
@@ -151,33 +152,35 @@ public class FBAfterLoginServlet extends HttpServlet {
 							{
 								jsonComm = facebookClient.fetchObject(post.getId()+"/comments",JsonObject.class,Parameter.with("summary", true),Parameter.with("limit", 10));
 //								System.out.println(jsonComm);
+								comment = jsonComm.getJsonObject("summary").getLong("total_count");
 							}
 							catch(Exception e)
 							{
 								System.out.println("error finding comments json");
 							}
 							
-							long comment = jsonComm.getJsonObject("summary").getLong("total_count");
-							long count = jsonObject.getJsonObject("summary").getLong("total_count");
+						try
+						{
+							
 							
 							
 //							long id = jsonObject.getJsonObject("data").getLong("id");
 //							System.out.println("iski id a"+id);
-							System.out.println("\n"+k+".\nID == "+post.getId()+"\tMESSAGE == "+post.getMessage()+"\nLIKES == "+count+"\tCOMMENT == "+comment+"\t CREATION == "+post.getCreatedTime().getHours()+":"+post.getCreatedTime().getMinutes());
+							System.out.println("\n"+k+".\nID == "+post.getId()+"\tMESSAGE == "+post.getMessage()+"\nLIKES == "+count+"\tCOMMENT == "+comment+"\t CREATION == "+post.getCreatedTime());
 //							System.out.println("\nLIKERS "+jsonObject.getString("data"));
 //							System.out.println("\nCOMMENTERS "+jsonComm.getString("data"));
 							
-							System.out.println("post object id == "+post.getObjectId()+"\tpost picture id"+post.getPicture());
+//							System.out.println("post object id == "+post.getObjectId()+"\tpost picture id"+post.getPicture());
 							
 							
 						}
 						catch(Exception e)
 						{
-//							System.out.println("Error occurred");
-							k--;
+							System.out.println("comment and like object errorError occurred");
+							
 						}
 					}
-					if(k > 1)
+					if(k > 10)
 						break;
 				}
 			}
