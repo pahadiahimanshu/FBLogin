@@ -285,8 +285,11 @@
         list-style: none;
         margin: 0 auto; 
         padding:  0;
-        text-align: center;
+        text-align: left;
         height:80px; 
+      }
+      .nav h2{
+        margin-left: 50px;
       }
 
       .nav ul li

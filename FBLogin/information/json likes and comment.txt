@@ -98,3 +98,10 @@ LIKES == 6	COMMENT == 0	 CREATION == Sat Nov 14 14:08:46 IST 2015
 LIKERS [{"id":"1526694367647658"}]
 
 COMMENTERS []
+
+
+
+information 
+
+
+out.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() +  "/styles/style.css' />");
