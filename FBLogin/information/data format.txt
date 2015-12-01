@@ -1,3 +1,4 @@
 userid, sessionid, no. of friends
 post type, post message,no of likes , time, no. of comments, id+id2+id3+id4
 post type, post message,no of likes , time, no. of comments, id+id2+id3+id4
+post type, message, likes, date, comments, shares, privacy,likers

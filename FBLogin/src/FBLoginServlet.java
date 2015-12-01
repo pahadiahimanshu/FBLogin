@@ -67,7 +67,7 @@ public class FBLoginServlet extends HttpServlet
 	     
 	     String LoginURL = "https://www.facebook.com/dialog/oauth?client_id="
 	                + appId + "&redirect_uri=" + redirectUrl
-	                + "&scope=public_profile,user_friends,user_about_me,user_location,user_posts,user_photos,email,user_likes,user_birthday&state=" + userID;
+	                + "&scope=public_profile,user_friends,user_about_me,user_location,user_posts,user_status,user_photos,email,user_likes,user_birthday&state=" + userID;
 	     pw.println("Redirecting to url");
 	     try {
 	    	    Thread.sleep(3000);                 //1000 milliseconds is one second.
