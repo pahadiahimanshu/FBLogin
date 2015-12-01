@@ -7,7 +7,325 @@
     <link rel="stylesheet" href="main.css" type="text/css">
 
     <style type="text/css">
+      
+      html, body {
+        margin: 0;
+      }
 
+      h1, h2, a {
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+      }
+
+      p ,h3,h4 {
+        font-family: 'Open Sans', sans-serif; 
+      }
+
+      /* nav */
+      .nav
+      {
+        background: #000;
+        height:80px;
+        width:100%;
+        position: fixed;
+        z-index: 1;
+      }
+
+      .nav ul 
+      {
+        list-style: none;
+        /*margin: 0 auto; */
+        padding:  0;
+        text-align: center;
+        height:80px; 
+      }
+
+      .nav ul li
+      {
+        color : #fff;
+        display:inline-block;
+        height: 80px;
+        line-height: 80px;
+        list-style: none;
+        padding: 0 10px;
+        transition: background .5s;
+        transition-property: background;
+        transition-duration: 0.5s;
+        transition-timing-function: initial;
+        transition-delay: initial;
+      }
+
+      li
+      {
+        text-align: -webkit-match-parent;
+      }
+      .containerB{
+        max-width: 100%;
+        color:white;
+        background-color: #3b5998;
+        text-align: center; 
+        z-index: 4;
+      }
+      .containerB h1{
+      }
+      .container {
+        max-width: 940px;
+        margin: 0 auto;
+      }
+      .container p{
+        color: black;
+      }
+
+      /* Profile picture*/
+      .team{
+        position:absolute;
+        width:100%;
+        /*height:200px;*/
+        z-index:0;
+        top:50%;
+        left:50%;
+        margin:-100px 0 0 -150px;
+     /*background:red;*/
+      }
+      .team h2{
+        text-align: center;
+      }
+      
+      .team .col {
+          /*float: left;*/
+          width: 30%;
+          padding: 10px;
+      }
+      .col .newimg{
+          border-radius: 50%;
+          height:300px;
+          width:300px;
+      }
+
+      .bgcol{
+        width:100%;
+        height:100px;
+      }
+
+      /* Main */
+      .main {
+        text-align: center;
+        background: url(images/bg.jpg) no-repeat center center;
+        background-size: cover;
+        height: 600px;
+      }
+
+      .main .container {
+        position: relative;
+        top: 100px;
+      }
+
+      .main h1 {
+        color: #fff;
+        margin: 0;
+        font-size: 150px;
+      }
+      .main h2{
+        color:#fff;
+      }
+
+      .main p {
+        color: #fff;
+        margin: 0 0 0 0;
+        font-size: 18px;
+      }
+
+      .main .btn {
+        background-color: #1c1c1c;
+        color: #fff;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      /* Supporting */
+      .supporting {
+        background-color: #1c1c1c;
+        text-align: center;
+        padding: 50px 0 80px;
+      }
+
+      .supporting .col {
+        float: left;
+        width: 28%;
+        padding: 10px;
+      }
+
+      .supporting h2 {
+        color: #3b5998;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .clearfix {
+        clear: both;
+      }
+
+      .supporting p {
+        color: #efefef;
+        margin-bottom: 20px;
+        line-height: 20px;
+        font-size: 12px;
+      }
+
+      .supporting .btn {
+        background-color: #eee;
+        color: #1c1c1c;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      /* Feature */
+      .feature {
+        background: url(images/feature.jpg) no-repeat center center;
+        /*background-color: #3b5998;*/
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+        margin-top: 0px;
+        z-index: 10;
+      }
+      .featureB {
+        /*background: url(images/feature.jpg) no-repeat center center;*/
+        background-color: #3b5998;
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+      }
+      .featureB .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .featureB h2 {
+        color: #fff;
+        font-size: 40px;
+        margin:0;
+        letter-spacing: 5px;
+        padding:50px 0 0;
+
+      }
+
+      .feature .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .feature h2 {
+        color: #fff;
+        font-size: 40px;
+        margin:0;
+        letter-spacing: 5px;
+        padding:50px 0 0;
+
+      }
+
+      /* Footer */
+      .footer {
+        background: url(images/1main.jpg) no-repeat center center;
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+      }
+
+      .footer .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .footer h2 {
+        color: #fff;
+        font-size: 40px;
+        margin: 0 0 20px 0;
+        padding:50px 0 0;
+      }
+
+      .footer p {
+        color: #fff;
+        margin: 0 0 20px 0;
+        font-size: 18px;
+      }
+
+      .footer .btn {
+        background-color: #1c1c1c;
+        color: #fff;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .footerB {
+        /*background: url(images/1main.jpg) no-repeat center center;*/
+        background-color: white;
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+      }
+
+      .footerB .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .footerB h2 {
+        color: #fff;
+        font-size: 40px;
+        margin: 0 0 20px 0;
+        padding:50px 0 0;
+      }
+
+      .footerB p {
+        color: #fff;
+        margin: 0 0 20px 0;
+        font-size: 18px;
+      }
+
+      .footerB .btn {
+        background-color: #1c1c1c;
+        color: #fff;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a.btn:hover {
+        background:#3b5998;
+        color:#000;
+      }
+      .topfan:hover{
+        color:#3b5998;
+      }
+
+      @media (min-width:600px) {
+        .main h1 {
+          font-size: 200px;
+        }
+
+        .supporting .col {
+          width: 30%;
+        }
+
+        .supporting h2 {
+          font-size: 40px;
+        }
+
+        .supporting p {
+          font-size: 14px;
+        }
+
+        .feature h2 {
+          font-size: 60px;
+        }
+      }
     </style>
     <link rel="icon" 
       type="image/jpg" 
@@ -25,28 +343,14 @@
     </div>
 
 
-    <!-- <div class="containerB">
-      <h1><br><br>Hello, Himanshu Pahadia</h1>
-    </div> -->
-    
-    <!-- <h1 style="z-index:1; color:pink">Hello, Himanshu Pahadia</h1> -->
-
+   
     <div class="team">
       <div class="col">
         <img class="newimg" src="https://towson.givecorps.com/assets/user-icon-silhouette-08553e35ff46c59f99c559bf4fa47e34.png">
       </div>
     </div>
     
-   <!--  <div class="main">
-      <div class="container">
-
-        <h2>Detective</h2>
-        <h1>FACEBOOK</h1>
-        <p>Investigate your facebook profile and explore the possibilities.</p>
-        <a class="btn" href="http://localhost:8080/FBLogin/FBLoginServlet">Log in</a>
-        
-      </div>
-    </div> -->
+   
 
     <div class="supporting">
       <div class="container">

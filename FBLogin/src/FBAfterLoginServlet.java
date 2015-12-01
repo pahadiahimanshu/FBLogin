@@ -2,7 +2,6 @@
  * @author =  himanshu pahadia
  */
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileWriter;
@@ -13,7 +12,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
-import javax.imageio.ImageIO;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -471,7 +470,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 					for(Post post : feed)
 					{
 //						System.out.println("inside second loop yeah");
-						if(k++ > 19)
+						if(k++ > 2)
 							break;
 						JsonObject jsonObject = null;
 						JsonObject jsonComm = null;
@@ -592,18 +591,35 @@ public class FBAfterLoginServlet extends HttpServlet {
 							k--;
 						}
 					}
-					if(k > 19)
+					if(k > 2)
 						break;
 				}
 				writer.close();
-				pw.println("<div class=\"centerplace\">\r\n" + 
-						"		<a class=\"btn\" href=\"http://localhost:8080/FBLogin/FBPredictionServlet\">Compute Results</a>\r\n" + 
+				pw.println("	<div class=\"centerplace\">\r\n" + 
+						"		<!-- <a class=\"btn\" href=\"http://localhost:8080/FBLogin/FBPredictionServlet\">Compute Results</a> -->\r\n" + 
+						"		<form name=\"mailing\" method=\"post\" action=\"http://localhost:8080/FBLogin/FBPredictionServlet\">\r\n" + 
+						"			<input class=\"btn\" type=\"submit\" value=\"Compute Result\"/>\r\n" + 
+						"		</form>\r\n" + 
 						"	</div>\r\n" + 
 						"  </body>\r\n" + 
 						"</html>");
+//				pw.println("</body></html>");
+				
 				pw.flush();
 				pw.close();
+
 				
+//				try
+//				{
+//					FBPredictionServlet predict = new FBPredictionServlet();
+//					predict.doPost(request, response);
+////					RequestDispatcher r = request.getRequestDispatcher("FBPredictionServlet");
+////					r.forward(request, response);
+//				}
+//				catch(Exception e)
+//				{
+//					System.out.println("exception redirect");
+//				}
 			}
 			catch(Exception e)
 			{
