@@ -27,6 +27,7 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.Post;
+import com.restfb.types.Post.MessageTag;
 import com.restfb.types.User;
 
 
@@ -82,7 +83,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 		{
 			FacebookClient facebookClient = new DefaultFacebookClient(accessToken, appSecret);
 			User user = facebookClient.fetchObject("me", User.class);
-			Connection<Post> myFeed = facebookClient.fetchConnection("me/feed", Post.class,Parameter.with("fields", "id,name,picture,likes,comments,message,created_time,object_id"));
+			Connection<Post> myFeed = facebookClient.fetchConnection("me/feed", Post.class,Parameter.with("fields", "id,name,type,picture,tags,likes,shares,message_tags,privacy,comments,message,created_time,object_id"));
 //			JsonObject jsonObject = facebookClient.fetchObject("me/feed",JsonObject.class, Parameter.with("summary", true),Parameter.with("limit", 1));
 //	        long count = jsonObject.getJsonObject("summary").getLong("total_count");
 //	        System.out.println(jsonObject);
@@ -99,7 +100,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 //				System.out.println("FILE IS "+filename);
 				BufferedWriter writer = new BufferedWriter( new FileWriter(filename,true));
 //				System.out.println("made the buffer object");
-				writer.write(user.getId() + comma + userID );
+				writer.write(user.getId() + comma + userID + comma +user.getName() );
 				writer.newLine();
 //				System.out.println("written first line");
 				System.out.println(user.getId()+comma+userID);
@@ -115,10 +116,11 @@ public class FBAfterLoginServlet extends HttpServlet {
 				for(List<Post> feed : myFeed)
 				{
 //					System.out.println("before second loop");
+//					System.out.println("feed*****"+feed);
 					for(Post post : feed)
 					{
 //						System.out.println("inside second loop yeah");
-						if(k++ > 10)
+						if(k++ > 19)
 							break;
 						JsonObject jsonObject = null;
 						JsonObject jsonComm = null;
@@ -149,20 +151,22 @@ public class FBAfterLoginServlet extends HttpServlet {
 							
 //							System.out.println("making comment and likes ");
 							long comment = 0, likes = 0 ;
+							
 							comment = jsonComm.getJsonObject("summary").getLong("total_count");
 							likes = jsonObject.getJsonObject("summary").getLong("total_count");
-//							System.out.println("made comment and likes objects long");
+
 							
+//							System.out.println("made comment and likes objects long");							
 //							long id = jsonObject.getJsonObject("data").getLong("id");
 //							System.out.println("iski id a"+id);
 //							System.out.println("\n"+k+".\nID == "+post.getId()+"\tMESSAGE == "+post.getMessage()+"\nLIKES == "+count+"\tCOMMENT == "+comment+"\t CREATION == "+post.getCreatedTime());
 //							System.out.println("\nLIKERS "+jsonObject.getString("data"));
 //							System.out.println("\nCOMMENTERS "+jsonComm.getString("data"));
+							
+							
 							String type = "status";
-							if(post.getObjectId() == null)
-								type = "status";
-							else
-								type = "photo";
+							
+							
 							String li =jsonObject.getString("data");
 							String listLikers = "";
 							for(int index = 0; index < li.length(); index++)
@@ -177,12 +181,43 @@ public class FBAfterLoginServlet extends HttpServlet {
 							if(status != null)
 							{
 								status = status.replace(',', ' ');
+								status = status.replace('\n', ' ');
 							}
 							if(listLikers.equals(""))
 								listLikers = null;
 							String date ="";
 							int year = post.getCreatedTime().getYear() + 1900;
 							date += year+"-"+post.getCreatedTime().getMonth()+"-"+post.getCreatedTime().getDate()+" "+post.getCreatedTime().getHours()+":"+post.getCreatedTime().getMinutes()+":"+post.getCreatedTime().getSeconds();
+							
+							int postPrivacy = 2;
+							if(post.getPrivacy() != null)
+							{
+								if(post.getPrivacy().getDescription().equals(""))
+									postPrivacy = 2;
+								else if(post.getPrivacy().getDescription().equals("Public"))
+									postPrivacy = 2;
+								else if(post.getPrivacy().getDescription().equals("Only Me"))
+									postPrivacy = 0;
+								else
+									postPrivacy = 1;
+							}
+							long shares;
+							try{
+								shares = post.getSharesCount();
+							}
+							catch(Exception e){
+								shares = 0;
+							}
+							List<MessageTag> tagCount;
+							try{
+								tagCount = post.getMessageTags();
+							}
+							catch(Exception e){
+								tagCount = null;
+							}
+							type = post.getType();
+//							System.out.println("post type : "+post.getType());
+//							System.out.println("post message : "+post.getMessage()+"\t"+tagCount+"\t"+post.getWithTags()+"\tLikes : "+ likes+"\tShares : "+shares+" post privacy : "+postPrivacy);
 //							System.out.println(date);
 //							System.out.println(post.getLikes());
 //							System.out.println(listLikers);
@@ -190,18 +225,19 @@ public class FBAfterLoginServlet extends HttpServlet {
 //							System.out.println("im here");
 //							System.out.println("\t\tMAIN"+post.getObjectId()+comma+post.getPicture()+comma+post.getAttachments()+comma);
 //							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+listLikers);
-							writer.write(type+comma+status+comma+likes+comma+post.getCreatedTime()+comma+comment+comma+listLikers);
+//							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers);
+							writer.write(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers);
 							writer.newLine();
 							
 						}
 						catch(Exception e)
 						{
-//							System.out.print(".");
+							System.out.print(".");
 //							System.out.println("Error occurred");
 							k--;
 						}
 					}
-					if(k > 10)
+					if(k > 19)
 						break;
 				}
 				writer.close();
