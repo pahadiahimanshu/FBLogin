@@ -62,10 +62,352 @@ public class FBAfterLoginServlet extends HttpServlet {
 		String userID = session.getId();
 		
 		
-		
-		pw.println("<br>The session id is "+userID);
-		
-		
+		System.out.println("rpath "+request.getContextPath());
+//		pw.println("<br>The session id is "+userID);
+		pw.flush();
+		pw.println("\r\n" + 
+				"\r\n" + 
+				"<!doctype html>\r\n" + 
+				"<html>\r\n" + 
+				"  <head>\r\n" + 
+				"    <title>Detective Facebook</title>\r\n" + 
+				"    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>\r\n" + 
+				"    <!-- <link rel=\"stylesheet\" href=\"facebook.css\" type=\"text/css\"> -->\r\n" + 
+				"    <!-- <link rel=\"stylesheet\" href=\"www.googledrive.com/host/0B5D69UB2Zzg8RlhLVXVQTlpackE\" type=\"text/css\"/> -->\r\n" + 
+				"    <style type=\"text/css\">\r\n" + 
+				"		\r\n" + 
+				"@-webkit-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-webkit-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-moz-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-ms-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-moz-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-webkit-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@-o-keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				"@keyframes uil-facebook {\r\n" + 
+				"  0% {\r\n" + 
+				"    -ms-transform: scale(2);\r\n" + 
+				"    -moz-transform: scale(2);\r\n" + 
+				"    -webkit-transform: scale(2);\r\n" + 
+				"    -o-transform: scale(2);\r\n" + 
+				"    transform: scale(2);\r\n" + 
+				"  }\r\n" + 
+				"  90% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"  100% {\r\n" + 
+				"    -ms-transform: scale(1);\r\n" + 
+				"    -moz-transform: scale(1);\r\n" + 
+				"    -webkit-transform: scale(1);\r\n" + 
+				"    -o-transform: scale(1);\r\n" + 
+				"    transform: scale(1);\r\n" + 
+				"  }\r\n" + 
+				"}\r\n" + 
+				".uil-facebook-css {\r\n" + 
+				"  background: none;\r\n" + 
+				"  position: relative;\r\n" + 
+				"  width: 200px;\r\n" + 
+				"  height: 200px;\r\n" + 
+				"}\r\n" + 
+				".uil-facebook-css > div {\r\n" + 
+				"  position: absolute;\r\n" + 
+				"  width: 40px;\r\n" + 
+				"  height: 120px;\r\n" + 
+				"  top: 40px;\r\n" + 
+				"  left: 20px;\r\n" + 
+				"  background: #3b5998;\r\n" + 
+				"  opacity: 0.6;\r\n" + 
+				"  -ms-animation: uil-facebook 1s cubic-bezier(0.01, 0.73, 0.28, 0.93) infinite;\r\n" + 
+				"  -moz-animation: uil-facebook 1s cubic-bezier(0.01, 0.73, 0.28, 0.93) infinite;\r\n" + 
+				"  -webkit-animation: uil-facebook 1s cubic-bezier(0.01, 0.73, 0.28, 0.93) infinite;\r\n" + 
+				"  -o-animation: uil-facebook 1s cubic-bezier(0.01, 0.73, 0.28, 0.93) infinite;\r\n" + 
+				"  animation: uil-facebook 1s cubic-bezier(0.01, 0.73, 0.28, 0.93) infinite;\r\n" + 
+				"}\r\n" + 
+				".uil-facebook-css > div:nth-of-type(2) {\r\n" + 
+				"  left: 80px;\r\n" + 
+				"  opacity: 0.8;\r\n" + 
+				"  -ms-animation-delay: 0.1s;\r\n" + 
+				"  -moz-animation-delay: 0.1s;\r\n" + 
+				"  -webkit-animation-delay: 0.1s;\r\n" + 
+				"  -o-animation-delay: 0.1s;\r\n" + 
+				"  animation-delay: 0.1s;\r\n" + 
+				"}\r\n" + 
+				".uil-facebook-css > div:nth-of-type(3) {\r\n" + 
+				"  left: 140px;\r\n" + 
+				"  opacity: 0.9;\r\n" + 
+				"  -ms-animation-delay: 0.2s;\r\n" + 
+				"  -moz-animation-delay: 0.2s;\r\n" + 
+				"  -webkit-animation-delay: 0.2s;\r\n" + 
+				"  -o-animation-delay: 0.2s;\r\n" + 
+				"  animation-delay: 0.2s;\r\n" + 
+				"}\r\n" + 
+				"\r\n" + 
+				".centerplace{\r\n" + 
+				"  position:absolute;\r\n" + 
+				"        width:100%;\r\n" + 
+				"        height:200px;\r\n" + 
+				"        /*position: absolute;*/\r\n" + 
+				"        z-index:15;\r\n" + 
+				"        top:50%;\r\n" + 
+				"        left:50%;\r\n" + 
+				"        margin:-100px 0 0 -150px;\r\n" + 
+				" \r\n" + 
+				"}\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				".btn {\r\n" + 
+				"        background-color: #1c1c1c;\r\n" + 
+				"        color: #fff;\r\n" + 
+				"        font-size: 18px;\r\n" + 
+				"        padding: 8px 30px;\r\n" + 
+				"        text-decoration: none;\r\n" + 
+				"        display: inline-block;\r\n" + 
+				"        postition:absolute;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"      a.btn:hover {\r\n" + 
+				"        background:#3b5998;\r\n" + 
+				"        /*color:#000;*/\r\n" + 
+				"      }\r\n" + 
+				"      h1, h2, a {\r\n" + 
+				"        font-family: 'Oswald', sans-serif;\r\n" + 
+				"        text-transform: uppercase;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"       .centerplace .col {\r\n" + 
+				"          /*float: left;*/\r\n" + 
+				"          width: 50%;\r\n" + 
+				"          padding: 10px;\r\n" + 
+				"          text-align: center;\r\n" + 
+				"      }\r\n" + 
+				"      .col .newimg{\r\n" + 
+				"          border-radius: 50%;\r\n" + 
+				"          height:300px;\r\n" + 
+				"          width:300px;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"      /* nav */\r\n" + 
+				"      .nav\r\n" + 
+				"      {\r\n" + 
+				"        background: #000;\r\n" + 
+				"        height:80px;\r\n" + 
+				"        width:100%;\r\n" + 
+				"        position: fixed;\r\n" + 
+				"        z-index: 1;\r\n" + 
+				"        margin-top: 0;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"      .nav ul \r\n" + 
+				"      {\r\n" + 
+				"        list-style: none;\r\n" + 
+				"        margin: 0 auto; \r\n" + 
+				"        padding:  0;\r\n" + 
+				"        text-align: left;\r\n" + 
+				"        height:80px; \r\n" + 
+				"      }\r\n" + 
+				"      .nav h2{\r\n" + 
+				"        margin-left: 50px;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"      .nav ul li\r\n" + 
+				"      {\r\n" + 
+				"        color : #fff;\r\n" + 
+				"        display:inline-block;\r\n" + 
+				"        height: 80px;\r\n" + 
+				"        line-height: 80px;\r\n" + 
+				"        list-style: none;\r\n" + 
+				"        padding: 0 10px;\r\n" + 
+				"        transition: background .5s;\r\n" + 
+				"        transition-property: background;\r\n" + 
+				"        transition-duration: 0.5s;\r\n" + 
+				"        transition-timing-function: initial;\r\n" + 
+				"        transition-delay: initial;\r\n" + 
+				"      }\r\n" + 
+				"\r\n" + 
+				"      li\r\n" + 
+				"      {\r\n" + 
+				"        text-align: -webkit-match-parent;\r\n" + 
+				"      }\r\n" + 
+				"    </style>\r\n" + 
+				"  \r\n" + 
+				" \r\n" + 
+				"  </head>\r\n" + 
+				"  <body>\r\n" + 
+				" \r\n" + 
+				" <div class=\"nav\">\r\n" + 
+				"      <div class=\"container\">\r\n" + 
+				"        <ul>\r\n" + 
+				"          <h2 style=\"color:white\">Detective <div style=\"color:#3b5998;display:inline-block\">Facebook</div></h2>\r\n" + 
+				"        </ul>\r\n" + 
+				"      </div>\r\n" + 
+				"    </div>\r\n" + 
+				"\r\n" + 
+				"	<div class=\"centerplace\">\r\n" + 
+				"		<div class=\"col\">\r\n" + 
+				"		<div class='uil-facebook-css' style='-webkit-transform:scale(0.6)'><div></div><div></div><div></div></div>\r\n" + 
+				"		</div>\r\n" + 
+				"	</div>\r\n");
+		pw.flush();
 		String fbCode = request.getParameter("code");
 		String state = request.getParameter("state");
 //		pw.println("<br>Code returned from fb == "+fbCode);
@@ -75,9 +417,9 @@ public class FBAfterLoginServlet extends HttpServlet {
 		String appSecret = "c5faa6fab48f6a785f0598ec11b3dddd";
 		String comma = ",";
 //		pw.println("<br>the access token is thisss "+accessToken);
-		
+
 //		pw.println(userID);
-		pw.print("<br>");
+//		pw.print("<br>");
 //		pw.println(state);
 		if(state.equals(userID))
 		{
@@ -91,12 +433,18 @@ public class FBAfterLoginServlet extends HttpServlet {
 //			Connection<Post> myFeed = facebookClient.fetchConnection("me/posts", Post.class, Parameter.with("fields", "from,to,likes.summary(true),comments.summary(true)"));
 			try
 			{
-				pw.println("<br> Hello, <h1>"+user.getName()+"</h1><br>");
+//				pw.println("<br> Hello, <h1>"+user.getName()+"</h1><br>");
 //				System.out.println("this is printed");
 				String filename = "C:\\Users\\Himanshu\\git\\FBLoginRepository\\FBLogin\\userInfo\\";
 				filename += user.getId();
 				filename +=".csv";
 				
+				//clear content
+				PrintWriter writ = new PrintWriter(filename);
+				writ.print("");
+				writ.close();
+				
+				//now write  new content
 //				System.out.println("FILE IS "+filename);
 				BufferedWriter writer = new BufferedWriter( new FileWriter(filename,true));
 //				System.out.println("made the buffer object");
@@ -109,7 +457,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 				
 				
 				int i = 1;
-				pw.println("<bold>Your Posts</bold>");
+//				pw.println("<bold>Your Posts</bold>");
 			
 				int k = 0;
 //				System.out.println("i am here before for loop");
@@ -241,6 +589,13 @@ public class FBAfterLoginServlet extends HttpServlet {
 						break;
 				}
 				writer.close();
+				pw.println("<div class=\"centerplace\">\r\n" + 
+						"		<a class=\"btn\" href=\"http://localhost:8080/FBLogin/FBPredictionServlet\">Compute Results</a>\r\n" + 
+						"	</div>\r\n" + 
+						"  </body>\r\n" + 
+						"</html>");
+				pw.flush();
+				pw.close();
 				
 			}
 			catch(Exception e)
@@ -254,7 +609,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 			pw.println("<br>ERROR VALIDATION! SORRY!<br>");
 		}
 		
-		pw.println("<br>END<br>");
+//		pw.println("<br>END<br>");
 	}
 	
 	private String readURL(URL url) throws IOException {
