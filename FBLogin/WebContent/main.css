@@ -8,8 +8,8 @@
         text-transform: uppercase;
       }
 
-      p {
-        font-family: Helvetica, Arial, sans-serif; 
+      p ,h3,h4 {
+        font-family: 'Open Sans', sans-serif; 
       }
 
       /* nav */
@@ -72,7 +72,7 @@
         position:absolute;
         width:100%;
         /*height:200px;*/
-        z-index:15;
+        z-index:0;
         top:50%;
         left:50%;
         margin:-100px 0 0 -150px;
@@ -177,9 +177,32 @@
       /* Feature */
       .feature {
         background: url(images/feature.jpg) no-repeat center center;
+        /*background-color: #3b5998;*/
         background-size: cover;
         height: 600px;
         text-align: center;
+        margin-top: 0px;
+        z-index: 10;
+      }
+      .featureB {
+        /*background: url(images/feature.jpg) no-repeat center center;*/
+        background-color: #3b5998;
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+      }
+      .featureB .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .featureB h2 {
+        color: #fff;
+        font-size: 40px;
+        margin:0;
+        letter-spacing: 5px;
+        padding:50px 0 0;
+
       }
 
       .feature .container {
@@ -191,6 +214,7 @@
         color: #fff;
         font-size: 40px;
         margin:0;
+        letter-spacing: 5px;
         padding:50px 0 0;
 
       }
@@ -222,6 +246,40 @@
       }
 
       .footer .btn {
+        background-color: #1c1c1c;
+        color: #fff;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .footerB {
+        /*background: url(images/1main.jpg) no-repeat center center;*/
+        background-color: white;
+        background-size: cover;
+        height: 600px;
+        text-align: center;
+      }
+
+      .footerB .container {
+        position: relative;
+        top: 200px;
+      }
+
+      .footerB h2 {
+        color: #fff;
+        font-size: 40px;
+        margin: 0 0 20px 0;
+        padding:50px 0 0;
+      }
+
+      .footerB p {
+        color: #fff;
+        margin: 0 0 20px 0;
+        font-size: 18px;
+      }
+
+      .footerB .btn {
         background-color: #1c1c1c;
         color: #fff;
         font-size: 18px;

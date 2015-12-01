@@ -5,6 +5,12 @@
     <title>Detective Facebook</title>
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="main.css" type="text/css">
+
+    <link rel="icon" 
+      type="image/jpg" 
+      href="http://i.stack.imgur.com/kNPKJ.gif"/>
+
+      
   </head>
   <body>
     <div class="nav">
@@ -57,12 +63,38 @@
       </div>
     </div>
 
-    <div class="feature">
+    <div class="featureB">
       <div class="container">
-        <h2>Post. Upload. Share. Repeat.</h2>
+        <h2>Hello, Himanshu Pahadia</h2>
+        <br><br><br>
+        <h3 style="color:white">Likes Prediction is </h3>
+        
+       <h2 style="letter-spacing:10px">25 Likes</h2>
       </div>
     </div>
 
+    <div class="supporting">
+      <div class="container">
+        <h2>Your Top Fan is</h2>
+        <h1 style="color:white">Shakti Saurav</h1><h3 style="color:white">49 Likes</h3>
+        <!-- <a class="btn" href="#">Learn More</a> -->
+      </div>
+    </div>
+
+    <div class="footerB">
+      <div class="container">
+        <h1>Calender Chart - Likes</h1>
+        <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+      </div>
+    </div>
+
+
+    <!-- <div class="footerB">
+      <div class="container">
+        <h1>Calender Chart - Likes</h1>
+        
+      </div>
+    </div> -->
     <div class="supporting">
       <div class="container">
         <h2>Like it</h2>
@@ -71,11 +103,41 @@
       </div>
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <h2>Stop scrolling. Start posting.</h2>
-        
-      </div>
-    </div>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1.1", {packages:["calendar"]});
+      google.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+       var dataTable = new google.visualization.DataTable();
+       dataTable.addColumn({ type: 'date', id: 'Date' });
+       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+       dataTable.addRows([
+          [ new Date(2012, 3, 13), 2 ],
+          [ new Date(2012, 3, 14), 4 ],
+          [ new Date(2012, 3, 15), 15 ],
+          [ new Date(2012, 3, 16), 20 ],
+          [ new Date(2012, 3, 17), 12 ],
+          // Many rows omitted for brevity.
+          // [ new Date(2013, 9, 4), 38177 ],
+          // [ new Date(2013, 9, 5), 38705 ],
+          // [ new Date(2013, 9, 12), 38210 ],
+          // [ new Date(2013, 9, 13), 38029 ],
+          // [ new Date(2013, 9, 19), 38823 ],
+          // [ new Date(2013, 9, 23), 38345 ],
+          // [ new Date(2013, 9, 24), 38436 ],
+          // [ new Date(2013, 9, 30), 38447 ]
+        ]);
+
+       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+       var options = {
+         title: "Likes",
+         height: 350,
+       };
+
+       chart.draw(dataTable, options);
+   }
+    </script>
   </body>
 </html>

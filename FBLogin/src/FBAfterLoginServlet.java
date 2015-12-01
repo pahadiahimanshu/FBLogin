@@ -63,6 +63,9 @@ public class FBAfterLoginServlet extends HttpServlet {
 		
 		
 		System.out.println("rpath "+request.getContextPath());
+		String imageTag ="<link rel=\"icon\" \r\n" + 
+				"      type=\"image/jpg\" \r\n" + 
+				"      href=\"http://i.stack.imgur.com/kNPKJ.gif\"/>";
 //		pw.println("<br>The session id is "+userID);
 		pw.flush();
 		pw.println("\r\n" + 
@@ -73,7 +76,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 				"    <title>Detective Facebook</title>\r\n" + 
 				"    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>\r\n" + 
 				"    <!-- <link rel=\"stylesheet\" href=\"facebook.css\" type=\"text/css\"> -->\r\n" + 
-				"    <!-- <link rel=\"stylesheet\" href=\"www.googledrive.com/host/0B5D69UB2Zzg8RlhLVXVQTlpackE\" type=\"text/css\"/> -->\r\n" + 
+				"    <!-- <link rel=\"stylesheet\" href=\"www.googledrive.com/host/0B5D69UB2Zzg8RlhLVXVQTlpackE\" type=\"text/css\"/> -->\r\n" + imageTag+
 				"    <style type=\"text/css\">\r\n" + 
 				"		\r\n" + 
 				"@-webkit-keyframes uil-facebook {\r\n" + 
