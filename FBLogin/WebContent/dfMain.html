@@ -6,11 +6,14 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="main.css" type="text/css">
 
+    <style type="text/css">
+
+    </style>
     <link rel="icon" 
       type="image/jpg" 
       href="http://i.stack.imgur.com/kNPKJ.gif"/>
 
-      
+
   </head>
   <body>
     <div class="nav">
@@ -30,7 +33,7 @@
 
     <div class="team">
       <div class="col">
-        <img class="newimg" src="images/him.jpg">
+        <img class="newimg" src="https://towson.givecorps.com/assets/user-icon-silhouette-08553e35ff46c59f99c559bf4fa47e34.png">
       </div>
     </div>
     
@@ -73,10 +76,15 @@
       </div>
     </div>
 
-    <div class="supporting">
-      <div class="container">
+    <div class="supporting" >
+      <div class="container" style="display:inline-block;margin-right:20px;">
         <h2>Your Top Fan is</h2>
-        <h1 style="color:white">Shakti Saurav</h1><h3 style="color:white">49 Likes</h3>
+        <a href="https://www.facebook.com/1018059304912124" style="text-decoration:none"><h1 class="topFan" style="color:white">Click to find out</h1></a><h3 style="color:white">49 Likes</h3>
+        <!-- <a class="btn" href="#">Learn More</a> -->
+      </div>
+      <div class="container" style="display:inline-block;margin-left:20px;">
+        <h2>Your Top Post is</h2>
+        <a href="https://www.facebook.com/1018059304912124" style="text-decoration:none"><h1 class="topFan" style="color:white">Click to find out</h1></a><h3 style="color:white">190 Likes</h3>
         <!-- <a class="btn" href="#">Learn More</a> -->
       </div>
     </div>
@@ -99,7 +107,7 @@
       <div class="container">
         <h2>Like it</h2>
         <p>Please give full marks to keep the good work coming. </p>
-        <a class="btn" href="#">Learn More</a>
+        <a class="btn" href="goodGrades.html">Learn More</a>
       </div>
     </div>
 
@@ -111,7 +119,7 @@
    function drawChart() {
        var dataTable = new google.visualization.DataTable();
        dataTable.addColumn({ type: 'date', id: 'Date' });
-       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+       dataTable.addColumn({ type: 'number', id: 'Likes' });
        dataTable.addRows([
           [ new Date(2012, 3, 13), 2 ],
           [ new Date(2012, 3, 14), 4 ],

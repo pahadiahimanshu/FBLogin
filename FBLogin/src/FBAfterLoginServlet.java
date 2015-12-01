@@ -566,6 +566,10 @@ public class FBAfterLoginServlet extends HttpServlet {
 							catch(Exception e){
 								tagCount = null;
 							}
+//							if(user.getPicture() == null)
+//								System.out.println("\nnull");
+//							else
+//								System.out.println("\nurl:"+user.getPicture().getUrl().toString());
 							type = post.getType();
 //							System.out.println("post type : "+post.getType());
 //							System.out.println("post message : "+post.getMessage()+"\t"+tagCount+"\t"+post.getWithTags()+"\tLikes : "+ likes+"\tShares : "+shares+" post privacy : "+postPrivacy);
@@ -576,8 +580,8 @@ public class FBAfterLoginServlet extends HttpServlet {
 //							System.out.println("im here");
 //							System.out.println("\t\tMAIN"+post.getObjectId()+comma+post.getPicture()+comma+post.getAttachments()+comma);
 //							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+listLikers);
-//							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers);
-							writer.write(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers);
+//							System.out.println(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers+comma+post.getId());
+							writer.write(type+comma+status+comma+likes+comma+date+comma+comment+comma+shares+comma+postPrivacy+comma+listLikers+comma+post.getId());
 							writer.newLine();
 							
 						}

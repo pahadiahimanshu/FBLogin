@@ -23,6 +23,7 @@ public class FBPredictionServlet extends HttpServlet
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
 		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

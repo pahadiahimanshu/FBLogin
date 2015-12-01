@@ -292,6 +292,9 @@
         background:#3b5998;
         color:#000;
       }
+      .topfan:hover{
+        color:#3b5998;
+      }
 
       @media (min-width:600px) {
         .main h1 {
