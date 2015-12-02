@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,8 @@ public class FBPredictionServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
+//		FBLike.currentUser = request.getParameter("state");
+		
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 	
@@ -40,7 +43,78 @@ public class FBPredictionServlet extends HttpServlet
 		
 		System.out.println("user id = "+userID);
 		System.out.println("state = "+state);
+		String fbuserid = request.getParameter("fbuserid");
+//		System.out.println("MAIN ;;;;"+fbuserid);
+		FBLike.currentUser = fbuserid;
+		FBLike.data();
+		
+		FBLike.statuslikeprediction1();
+		
+		
+		FBLike.medialikeprediction1();
+		
+		System.out.println("\n\n\nSUPER MAIN PREDICTION"+MultipleLinearRegression.ypredicted);
+		
+		
+		
+		String nameUser = FBLike.firstlinebreak[2];
+		Float totalLikes = FBLike.sumoflikes + FBLike.likesbefore + FBLike.photolikesbefore + FBLike.photosumoflikes;
+		Float totalComments = FBLike.commentsbefore + FBLike.photocommentsbefore + FBLike.photosumofcomments + FBLike.sumofcomments;
+		
+		
+		String mediaPrediction = "";
+		String statusPrediction = "";
+		
+		if(FBLike.ar != null)
+		{
+			for(int index = 0; index < FBLike.ar.length; index ++)
+			{
+				double a = Math.ceil(FBLike.ar[index]);
+				statusPrediction += a+" | ";
+			}
+		}
+		else
+		{
+			statusPrediction = "Not sufficient to test model";
+		}
+		if(MultipleLinearRegression.ypredicted != null)
+		{
+			for(int index = 0; index < MultipleLinearRegression.ypredicted.length; index ++)
+			{
+				double a = Math.ceil(MultipleLinearRegression.ypredicted[index]);
+				mediaPrediction += a +" | ";
+			}
+		}
+		else
+		{
+			mediaPrediction = "Not sufficient to test model";
+		}
+		System.out.println("###########prediction is this " + mediaPrediction);
 
+		System.out.println("###########prediction is this " + statusPrediction);
+		
+		
+		int maxLikes = -1;
+		String maxLikesID = "";
+		
+//		for(int som = 0; som < FBLike.likerList.size(); som++)
+//		{
+//			if(FBLike.likerList)
+//		}
+		
+		for (Map.Entry<String, Integer> entry : FBLike.likerList.entrySet()) {
+		    String key = entry.getKey();
+		    Integer value = entry.getValue();
+		    if(value > maxLikes)
+		    {
+		    	maxLikes = value;
+		    	maxLikesID = key;
+		    }
+		}
+		
+		int maxLikesPost = FBLike.maxLikesPost;
+		String maxLikesPostID = FBLike.maxlikesPostID;
+		
 		
 		pw.flush();
 		pw.println("\r\n" + 
@@ -400,11 +474,11 @@ public class FBPredictionServlet extends HttpServlet
 				"    <div class=\"supporting\">\r\n" + 
 				"      <div class=\"container\">\r\n" + 
 				"        <div class=\"col\">\r\n" + 
-				"          <h2>1902</h2>\r\n" + 
+				"          <h2>"+ totalLikes+"</h2>\r\n" + 
 				"          <p>Likes</p>\r\n" + 
 				"        </div>\r\n" + 
 				"        <div class=\"col\">\r\n" + 
-				"          <h2>1302</h2>\r\n" + 
+				"          <h2>"+totalComments+"</h2>\r\n" + 
 				"          <p>Comments</p>\r\n" + 
 				"        </div>\r\n" + 
 				"        <div class=\"col\">\r\n" + 
@@ -417,23 +491,26 @@ public class FBPredictionServlet extends HttpServlet
 				"\r\n" + 
 				"    <div class=\"featureB\">\r\n" + 
 				"      <div class=\"container\">\r\n" + 
-				"        <h2>Hello, Himanshu Pahadia</h2>\r\n" + 
+				"        <h2>Hello, "+nameUser+"</h2>\r\n" + 
 				"        <br><br><br>\r\n" + 
 				"        <h3 style=\"color:white\">Likes Prediction is </h3>\r\n" + 
 				"        \r\n" + 
-				"       <h2 style=\"letter-spacing:10px\">25 Likes</h2>\r\n" + 
+				" <h3>Status Prediction</h3>"+
+				"       <h3 style=\"letter-spacing:5px\">"+statusPrediction+"</h2>\r\n" +
+				" <h3>Media Prediction</h3>"+ 
+				"       <h3 style=\"letter-spacing:5px\">"+mediaPrediction+"</h2>\r\n" + 
 				"      </div>\r\n" + 
 				"    </div>\r\n" + 
 				"\r\n" + 
 				"    <div class=\"supporting\" >\r\n" + 
 				"      <div class=\"container\" style=\"display:inline-block;margin-right:20px;\">\r\n" + 
 				"        <h2>Your Top Fan is</h2>\r\n" + 
-				"        <a href=\"https://www.facebook.com/1018059304912124\" style=\"text-decoration:none\"><h1 class=\"topFan\" style=\"color:white\">Click to find out</h1></a><h3 style=\"color:white\">49 Likes</h3>\r\n" + 
+				"        <a href=\"https://www.facebook.com/"+maxLikesID+"\" style=\"text-decoration:none\"><h1 class=\"topFan\" style=\"color:white\">Click to find out</h1></a><h3 style=\"color:white\">"+maxLikes+" Likes</h3>\r\n" + 
 				"        <!-- <a class=\"btn\" href=\"#\">Learn More</a> -->\r\n" + 
 				"      </div>\r\n" + 
 				"      <div class=\"container\" style=\"display:inline-block;margin-left:20px;\">\r\n" + 
 				"        <h2>Your Top Post is</h2>\r\n" + 
-				"        <a href=\"https://www.facebook.com/1018059304912124\" style=\"text-decoration:none\"><h1 class=\"topFan\" style=\"color:white\">Click to find out</h1></a><h3 style=\"color:white\">190 Likes</h3>\r\n" + 
+				"        <a href=\"https://www.facebook.com/"+maxLikesPostID+"\" style=\"text-decoration:none\"><h1 class=\"topFan\" style=\"color:white\">Click to find out</h1></a><h3 style=\"color:white\">"+maxLikesPost+" Likes</h3>\r\n" + 
 				"        <!-- <a class=\"btn\" href=\"#\">Learn More</a> -->\r\n" + 
 				"      </div>\r\n" + 
 				"    </div>\r\n" + 
@@ -469,22 +546,34 @@ public class FBPredictionServlet extends HttpServlet
 				"       var dataTable = new google.visualization.DataTable();\r\n" + 
 				"       dataTable.addColumn({ type: 'date', id: 'Date' });\r\n" + 
 				"       dataTable.addColumn({ type: 'number', id: 'Likes' });\r\n" + 
-				"       dataTable.addRows([\r\n" + 
-				"          [ new Date(2012, 3, 13), 2 ],\r\n" + 
-				"          [ new Date(2012, 3, 14), 4 ],\r\n" + 
-				"          [ new Date(2012, 3, 15), 15 ],\r\n" + 
-				"          [ new Date(2012, 3, 16), 20 ],\r\n" + 
-				"          [ new Date(2012, 3, 17), 12 ],\r\n" + 
-				"          // Many rows omitted for brevity.\r\n" + 
-				"          // [ new Date(2013, 9, 4), 38177 ],\r\n" + 
-				"          // [ new Date(2013, 9, 5), 38705 ],\r\n" + 
-				"          // [ new Date(2013, 9, 12), 38210 ],\r\n" + 
-				"          // [ new Date(2013, 9, 13), 38029 ],\r\n" + 
-				"          // [ new Date(2013, 9, 19), 38823 ],\r\n" + 
-				"          // [ new Date(2013, 9, 23), 38345 ],\r\n" + 
-				"          // [ new Date(2013, 9, 24), 38436 ],\r\n" + 
-				"          // [ new Date(2013, 9, 30), 38447 ]\r\n" + 
-				"        ]);\r\n" + 
+				"       dataTable.addRows([\r\n" );
+				int year, month, date;
+			for (Map.Entry<String, Integer> entry : FBLike.cMap.entrySet()) 
+			{
+			    String key = entry.getKey();
+			    Integer value = entry.getValue();
+			    String[] a = key.split("-");
+			    year = Integer.parseInt(a[0]);
+			    month = Integer.parseInt(a[1])+1;
+			    date = Integer.parseInt(a[2]);
+			    pw.print("[new Date("+year+","+month+","+date+"),"+value+"],\r\n");
+			}
+				
+//		pw.print("          [ new Date(2012, 3, 13), 2 ],\r\n" + 
+//				"          [ new Date(2012, 3, 14), 4 ],\r\n" + 
+//				"          [ new Date(2012, 3, 15), 15 ],\r\n" + 
+//				"          [ new Date(2012, 3, 16), 20 ],\r\n" + 
+//				"          [ new Date(2012, 3, 17), 12 ],\r\n" + 
+//				"          // Many rows omitted for brevity.\r\n" + 
+//				"          // [ new Date(2013, 9, 4), 38177 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 5), 38705 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 12), 38210 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 13), 38029 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 19), 38823 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 23), 38345 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 24), 38436 ],\r\n" + 
+//				"          // [ new Date(2013, 9, 30), 38447 ]\r\n" + 
+				pw.print("        ]);\r\n" + 
 				"\r\n" + 
 				"       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));\r\n" + 
 				"\r\n" + 

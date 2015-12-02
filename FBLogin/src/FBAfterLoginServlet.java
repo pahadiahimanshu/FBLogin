@@ -470,7 +470,7 @@ public class FBAfterLoginServlet extends HttpServlet {
 					for(Post post : feed)
 					{
 //						System.out.println("inside second loop yeah");
-						if(k++ > 2)
+						if(k++ > 19)
 							break;
 						JsonObject jsonObject = null;
 						JsonObject jsonComm = null;
@@ -570,6 +570,8 @@ public class FBAfterLoginServlet extends HttpServlet {
 //							else
 //								System.out.println("\nurl:"+user.getPicture().getUrl().toString());
 							type = post.getType();
+							if(type.equals("event"))
+								type = "link";
 //							System.out.println("post type : "+post.getType());
 //							System.out.println("post message : "+post.getMessage()+"\t"+tagCount+"\t"+post.getWithTags()+"\tLikes : "+ likes+"\tShares : "+shares+" post privacy : "+postPrivacy);
 //							System.out.println(date);
@@ -591,18 +593,22 @@ public class FBAfterLoginServlet extends HttpServlet {
 							k--;
 						}
 					}
-					if(k > 2)
+					if(k > 19)
 						break;
 				}
 				writer.close();
+				String id = user.getId();
 				pw.println("	<div class=\"centerplace\">\r\n" + 
 						"		<!-- <a class=\"btn\" href=\"http://localhost:8080/FBLogin/FBPredictionServlet\">Compute Results</a> -->\r\n" + 
-						"		<form name=\"mailing\" method=\"post\" action=\"http://localhost:8080/FBLogin/FBPredictionServlet\">\r\n" + 
+						"		<form name=\"mailing\" method=\"post\" action=\"http://localhost:8080/FBLogin/FBPredictionServlet?fbuserid="+id+"\">\r\n" + 
 						"			<input class=\"btn\" type=\"submit\" value=\"Compute Result\"/>\r\n" + 
 						"		</form>\r\n" + 
 						"	</div>\r\n" + 
 						"  </body>\r\n" + 
 						"</html>");
+//				request.setAttribute("fbuserid",user.getId());
+//				RequestDispatcher rd = request.getRequestDispatcher("/FBPredictionServlet");
+//				rd.forward(request,response);
 //				pw.println("</body></html>");
 				
 				pw.flush();
