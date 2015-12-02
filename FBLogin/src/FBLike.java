@@ -1,3 +1,8 @@
+/*
+ * Project 2 - Facebook webapp
+ * @author : Sakti Saurav 2014093
+ * 			Himanshu Pahadia 2014045
+ */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
