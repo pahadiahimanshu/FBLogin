@@ -116,6 +116,14 @@ public class FBPredictionServlet extends HttpServlet
 		String maxLikesPostID = FBLike.maxlikesPostID;
 		
 		
+		
+		float profileRate = 0;
+		
+		profileRate = totalLikes/10;
+		profileRate = profileRate + (totalComments/5);
+		if(profileRate >= 100)
+			profileRate = 99;
+		double pr = Math.ceil(profileRate);
 		pw.flush();
 		pw.println("\r\n" + 
 				"<!doctype html>\r\n" + 
@@ -482,7 +490,7 @@ public class FBPredictionServlet extends HttpServlet
 				"          <p>Comments</p>\r\n" + 
 				"        </div>\r\n" + 
 				"        <div class=\"col\">\r\n" + 
-				"          <h2>94%</h2>\r\n" + 
+				"          <h2>"+ pr +"</h2>\r\n" + 
 				"          <p>Profile Rate</p>\r\n" + 
 				"        </div>\r\n" + 
 				"        <div class=\"clearfix\"></div>\r\n" + 
